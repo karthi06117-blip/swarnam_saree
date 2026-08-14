@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Svarnam Silks | Premium Handloom Silk Sarees</title>
+  <meta name="description" content="Explore Svarnam Silks for the finest handloom Kanchipuram, Banarasi, and Paithani silk sarees. Elegance woven in gold and silk.">
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="Dock.css">
+  <link rel="stylesheet" href="GlareHover.css">
+</head>
+<body>
+
+  <!-- Desktop Presentation Wrapper -->
+  <div class="desktop-wrapper">
+    
+    <!-- Left Sidebar: Desktop Branding & Information -->
+    <div class="desktop-sidebar">
+      <h1>Svarnam<br>Silks</h1>
+      <div class="tagline">Elegance Woven in Gold & Silk</div>
+      <p>
+        Welcome to the digital atelier of Svarnam Silks. We bring you the finest collection of handcrafted sarees sourced directly from heritage weaving clusters across India.
+      </p>
+      
+      <ul class="features-list">
+        <li>
+          <i class="material-icons-round">verified</i>
+          <span>100% Pure Certified Mulberry Silk</span>
+        </li>
+        <li>
+          <i class="material-icons-round">workspace_premium</i>
+          <span>Authentic Gold & Silver Zari Borders</span>
+        </li>
+        <li>
+          <i class="material-icons-round">local_shipping</i>
+          <span>Free Insured Delivery Across India</span>
+        </li>
+        <li>
+          <i class="material-icons-round">support_agent</i>
+          <span>Personal Shopping Assistance via WhatsApp</span>
+        </li>
+      </ul>
+      
+      <p style="margin-top: 30px; font-size: 0.85rem; color: var(--color-gold-light); opacity: 0.8;">
+        * Note: This application is built with a Mobile-First layout. Please interact with the fully functional mobile screen on the right.
+      </p>
+    </div>
+
+    <!-- Center/Right: Phone Simulator Frame -->
+    <div class="phone-frame">
+      <div class="phone-screen" id="phone-screen">
+        
+        <!-- App Header (Global) -->
+        <header class="app-header">
+          <div class="logo-container">
+            <span class="logo">SVARNAM SILKS</span>
+          </div>
+          <button class="header-action-btn" id="header-cart-btn" aria-label="View Cart">
+            <i class="material-icons-round">shopping_cart</i>
+            <span class="cart-badge" id="cart-badge-count" style="display: none;">0</span>
+          </button>
+        </header>
+
+        <!-- App Main Content Area -->
+        <main class="app-content" id="app-content-scroll">
+          
+          <!-- 1. HOME VIEW -->
+          <div id="view-home" class="page-view active">
+            <!-- Hero Banner -->
+            <div class="hero-slider">
+              <img src="images/hero_banner.png" alt="Svarnam Silks Festive Collection">
+              <div class="hero-overlay">
+                <h2>Festive Heritage</h2>
+                <p>Curated Handloom Sarees for your special moments</p>
+              </div>
+            </div>
+
+            <!-- Categories Section -->
+            <div class="section-title-container">
+              <h2 class="section-title">Shop by Weave</h2>
+              <span class="section-link" id="home-view-all-categories">View All</span>
+            </div>
+            
+            <div class="category-scroll">
+              <div class="category-card" data-category="Kanchipuram">
+                <div class="category-img-container">
+                  <img src="images/kanchipuram_blue.png" alt="Kanchipuram Sarees">
+                </div>
+                <span>Kanchipuram</span>
+              </div>
+              <div class="category-card" data-category="Banarasi">
+                <div class="category-img-container">
+                  <img src="images/banarasi_orange.png" alt="Banarasi Sarees">
+                </div>
+                <span>Banarasi</span>
+              </div>
+              <div class="category-card" data-category="Paithani">
+                <div class="category-img-container">
+                  <img src="images/paithani_silver.png" alt="Paithani Sarees">
+                </div>
+                <span>Paithani</span>
+              </div>
+            </div>
+
+            <!-- Featured Collection -->
+            <div class="section-title-container">
+              <h2 class="section-title">Featured Masterpieces</h2>
+              <span class="section-link" id="home-view-featured">See All</span>
+            </div>
+            
+            <div class="products-grid" id="home-featured-grid">
+              <!-- Rendered Dynamically via JS -->
+            </div>
+
+            <!-- Brand Story Heritage Box -->
+            <div class="brand-story-box">
+              <h3>The Weaver's Legacy</h3>
+              <p>
+                Every thread of a Svarnam Silk saree carries the soul of Indian craftsmanship. Our designs pay homage to centuries-old techniques, blending organic silk fibres and genuine zari threads into masterpieces that endure generations.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. PRODUCT LISTING VIEW (SHOP) -->
+          <div id="view-shop" class="page-view">
+            <!-- Shop Filters and Search -->
+            <div class="shop-controls">
+              <div class="search-bar">
+                <i class="material-icons-round">search</i>
+                <input type="text" id="shop-search-input" placeholder="Search sarees, colors, weaves...">
+              </div>
+              <div class="filter-row">
+                <div class="filter-tabs" id="shop-category-tabs">
+                  <button class="filter-tab active" data-category="All">All</button>
+                  <button class="filter-tab" data-category="Kanchipuram">Kanchipuram</button>
+                  <button class="filter-tab" data-category="Banarasi">Banarasi</button>
+                  <button class="filter-tab" data-category="Paithani">Paithani</button>
+                </div>
+              </div>
+              <div class="filter-action-row">
+                <button class="filter-toggle-btn" id="filter-toggle-btn" aria-label="Open filter options">
+                  <i class="material-icons-round">tune</i>
+                  <span>Filter Options</span>
+                  <span class="filter-badge-count" id="filter-badge-count" style="display: none;">0</span>
+                </button>
+                <select class="sort-select" id="shop-sort-select" aria-label="Sort products">
+                  <option value="default">Sort: Recommended</option>
+                  <option value="newest">Newest First</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Shop Grid -->
+            <div class="products-grid" id="shop-products-grid" style="margin-top: 10px;">
+              <!-- Rendered Dynamically -->
+            </div>
+          </div>
+
+          <!-- 3. PRODUCT DETAIL VIEW -->
+          <div id="view-product-detail" class="page-view">
+            <div class="product-detail-hero">
+              <button class="back-btn" id="detail-back-btn" aria-label="Back">
+                <i class="material-icons-round">arrow_back</i>
+              </button>
+              <div class="main-image-container">
+                <img id="detail-product-image" class="lazy-img" src="" alt="">
+              </div>
+              <div class="thumbnail-container" id="detail-thumbnails">
+                <!-- Rendered Dynamically -->
+              </div>
+            </div>
+            
+            <div class="product-detail-body">
+              <div class="product-meta-header">
+                <span class="product-detail-category" id="detail-product-category">Category</span>
+                <h2 class="product-detail-title" id="detail-product-title">Saree Title</h2>
+              </div>
+
+              <div class="product-detail-price-row">
+                <span class="product-detail-price" id="detail-product-price">₹0</span>
+                <span class="stock-indicator" id="detail-product-stock">
+                  <i class="material-icons-round">fiber_manual_record</i> <span>In Stock</span>
+                </span>
+              </div>
+
+              <h3 class="product-section-title">The Story</h3>
+              <p class="product-detail-desc" id="detail-product-desc">
+                Description goes here...
+              </p>
+
+              <!-- Tabs for Details / Care -->
+              <div class="tabs-container">
+                <div class="tabs-header">
+                  <button class="tab-btn active" data-tab="tab-specs">Specifications</button>
+                  <button class="tab-btn" data-tab="tab-care">Care Details</button>
+                </div>
+                
+                <div class="tab-pane active" id="tab-specs">
+                  <ul class="specs-list">
+                    <li class="specs-item">
+                      <span class="specs-label">Fabric Type</span>
+                      <span class="specs-value" id="spec-fabric">Fabric</span>
+                    </li>
+                    <li class="specs-item">
+                      <span class="specs-label">Color Shades</span>
+                      <span class="specs-value" id="spec-color">Color</span>
+                    </li>
+                    <li class="specs-item">
+                      <span class="specs-label">Blouse Piece Included</span>
+                      <span class="specs-value" id="spec-blouse">Yes</span>
+                    </li>
+                    <li class="specs-item">
+                      <span class="specs-label">Saree Length</span>
+                      <span class="specs-value" id="spec-length">5.5 Meters</span>
+                    </li>
+                    <li class="specs-item">
+                      <span class="specs-label">Occasion</span>
+                      <span class="specs-value" id="spec-occasion">Occasion</span>
+                    </li>
+                    <li class="specs-item">
+                      <span class="specs-label">Zari Type</span>
+                      <span class="specs-value" id="spec-zari">Zari</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div class="tab-pane" id="tab-care">
+                  <ul class="care-instructions">
+                    <li>Dry cleaning is highly recommended to maintain the richness of silk and zari threads.</li>
+                    <li>Avoid direct perfume sprays or contact with harsh chemicals on zari work.</li>
+                    <li>Store wrapped in clean muslin cloth in a dry, ventilated cupboard.</li>
+                    <li>Iron on low heat, ideally placing a thin cotton cloth on top of the saree.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Similar Products (You May Also Like) -->
+              <div class="similar-products-section" style="margin-top: 30px; margin-bottom: 85px;">
+                <h3 class="product-section-title">You May Also Like</h3>
+                <div class="products-grid" id="detail-similar-grid" style="padding: 10px 0; margin-top: 5px;">
+                  <!-- Rendered Dynamically -->
+                </div>
+              </div>
+
+              <!-- Purchase Row (Sticky) -->
+              <div class="purchase-bar">
+                <div class="qty-selector">
+                  <button class="qty-btn" id="detail-qty-minus" aria-label="Decrease Quantity">−</button>
+                  <input type="text" class="qty-input" id="detail-qty-input" value="1" readonly>
+                  <button class="qty-btn" id="detail-qty-plus" aria-label="Increase Quantity">+</button>
+                </div>
+                <button class="add-to-cart-btn" id="detail-add-to-cart-btn">
+                  <i class="material-icons-round">shopping_cart</i>
+                  <span>Add to Cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. CART VIEW -->
+          <div id="view-cart" class="page-view" style="position: relative;">
+            <div class="section-title-container">
+              <h2 class="section-title">Your Basket</h2>
+            </div>
+            
+            <div class="cart-container">
+              <div class="cart-empty" id="cart-empty-view">
+                <i class="material-icons-round">shopping_basket</i>
+                <h3>Your Cart is Empty</h3>
+                <p>Browse our heritage collection and add your favorite sarees here.</p>
+                <button class="btn-primary" id="cart-shop-now-btn">Shop Collection</button>
+              </div>
+              
+              <div id="cart-content-view" style="display: none;">
+                <div class="cart-list" id="cart-items-container">
+                  <!-- Rendered Dynamically -->
+                </div>
+                
+                <!-- Summary Card -->
+                <div class="summary-box" style="margin-bottom: 20px;">
+                  <h3 class="summary-title">Order Total</h3>
+                  <div class="summary-row">
+                    <span>Basket Subtotal</span>
+                    <span id="cart-summary-subtotal">₹0</span>
+                  </div>
+                  <div class="summary-row total">
+                    <span>Grand Total</span>
+                    <span id="cart-summary-total">₹0</span>
+                  </div>
+                </div>
+
+                <!-- Order Tracking Section -->
+                <div class="order-tracking-section" id="order-tracking-section" style="display: none; margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--color-cream-dark);">
+                  <h3 class="summary-title" style="margin-bottom: 15px;">📦 Recent Order Status</h3>
+                  <div id="order-tracking-list"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sticky Proceed to Checkout Bar -->
+            <div class="cart-sticky-bar" id="cart-sticky-bar" style="display: none;">
+              <button class="checkout-btn" id="cart-checkout-btn-sticky">
+                <span>Proceed to Checkout</span>
+                <i class="material-icons-round">arrow_forward</i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. CHECKOUT VIEW -->
+          <div id="view-checkout" class="page-view" style="position: relative;">
+            <div class="checkout-container" style="padding-bottom: 80px;">
+              <!-- Steps Tracker -->
+              <div class="checkout-steps">
+                <div class="checkout-step completed"><i class="material-icons-round" style="font-size: 16px;">shopping_basket</i></div>
+                <div class="checkout-step active">2</div>
+                <div class="checkout-step">3</div>
+              </div>
+              
+              <h2 class="section-title" style="margin-bottom: 20px;">Shipping Details</h2>
+              
+              <form id="checkout-form" novalidate>
+                <div class="form-group">
+                  <label class="form-label" for="checkout-name">Full Name *</label>
+                  <input type="text" class="form-input" id="checkout-name" required placeholder="e.g. Priyanjali Sharma" autocomplete="name">
+                  <small class="form-error-msg" id="error-checkout-name"></small>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="checkout-phone">Mobile Number (WhatsApp updates) *</label>
+                  <input type="tel" inputmode="numeric" class="form-input" id="checkout-phone" required placeholder="e.g. 9876543210">
+                  <small class="form-error-msg" id="error-checkout-phone"></small>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="checkout-address">Delivery Address *</label>
+                  <textarea class="form-textarea" id="checkout-address" required placeholder="Apartment / House number, Street name, Locality"></textarea>
+                  <small class="form-error-msg" id="error-checkout-address"></small>
+                </div>
+                <div class="form-row" style="display: flex; gap: 10px;">
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label" for="checkout-city">City *</label>
+                    <input type="text" class="form-input" id="checkout-city" required placeholder="e.g. Chennai">
+                    <small class="form-error-msg" id="error-checkout-city"></small>
+                  </div>
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label" for="checkout-state">State *</label>
+                    <input type="text" class="form-input" id="checkout-state" required placeholder="e.g. Tamil Nadu">
+                    <small class="form-error-msg" id="error-checkout-state"></small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="checkout-pincode">Pincode *</label>
+                  <input type="text" inputmode="numeric" class="form-input" id="checkout-pincode" required placeholder="e.g. 600001">
+                  <small class="form-error-msg" id="error-checkout-pincode"></small>
+                </div>
+                
+                <h3 class="product-section-title" style="margin-top: 25px; margin-bottom: 10px;">Payment Method</h3>
+                <div class="payment-selector">
+                  <label class="payment-option">
+                    <input type="radio" name="payment-method" value="COD" checked>
+                    <span>Cash on Delivery (COD)</span>
+                  </label>
+                </div>
+
+                <div class="summary-box" style="margin-top: 20px; padding: 15px;">
+                  <h4 style="font-family: var(--font-heading); color: var(--color-maroon); font-size: 0.85rem; margin-bottom: 10px; text-transform: uppercase;">Items in Order</h4>
+                  <div id="checkout-items-summary" style="font-size: 0.78rem; line-height: 1.5; color: var(--color-text-muted); margin-bottom: 12px;">
+                    <!-- Rendered Dynamically -->
+                  </div>
+                  <div class="summary-row total" style="border-top: 1px solid var(--color-cream-dark); padding-top: 8px; margin-top: 8px;">
+                    <span>Order Amount</span>
+                    <span id="checkout-grand-total">₹0</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Sticky Place Order Bar -->
+            <div class="checkout-sticky-bar">
+              <button type="submit" form="checkout-form" class="checkout-btn" id="checkout-place-order-btn" style="margin-top: 0; width: 100%;">
+                <span>Place Order (COD)</span>
+                <i class="material-icons-round">done_all</i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 6. ORDER CONFIRMATION VIEW -->
+          <div id="view-confirmation" class="page-view">
+            <div class="confirm-container">
+              <div class="confirm-icon-box">
+                <i class="material-icons-round">check_circle</i>
+              </div>
+              <h2 class="confirm-title">Order placed successfully!</h2>
+              <span class="confirm-id" id="confirm-order-id">#SV-2026-9812</span>
+              <p class="confirm-text">
+                Thank you for shopping with <strong>Svarnam Silks</strong>. We have received your order for delivery. Our representative will contact you via phone/WhatsApp at <span id="confirm-customer-phone"></span> to confirm delivery details before dispatching.
+              </p>
+              
+              <div class="summary-box" style="width: 100%; margin-bottom: 25px; text-align: left;">
+                <h4 style="font-family: var(--font-heading); color: var(--color-maroon); font-size: 0.9rem; margin-bottom: 10px;">Order Summary</h4>
+                <div id="confirm-items-summary" style="font-size: 0.78rem; line-height: 1.5; color: var(--color-text-muted);">
+                  <!-- Rendered Dynamically -->
+                </div>
+                <div class="summary-row total" style="font-size: 0.9rem; margin-top: 8px; padding-top: 8px;">
+                  <span>Total Bill</span>
+                  <span id="confirm-total-amount">₹0</span>
+                </div>
+              </div>
+              
+              <button class="btn-primary" id="confirm-continue-shopping-btn" style="width: 100%;">
+                <i class="material-icons-round" style="margin-right: 5px;">shopping_basket</i> Continue Shopping
+              </button>
+            </div>
+          </div>
+
+          <!-- 7. MERCHANT ADMIN VIEW -->
+          <div id="view-admin" class="page-view">
+            <div class="admin-container">
+              <div class="admin-header">
+                <h2 class="admin-title">Merchant Center</h2>
+                <button class="admin-btn" id="admin-add-product-btn">
+                  <i class="material-icons-round">add</i> Add Saree
+                </button>
+              </div>
+
+              <!-- Admin Tabs -->
+              <div class="admin-nav">
+                <button class="admin-nav-btn active" id="admin-tab-products" data-tab="admin-products-pane">Catalog</button>
+                <button class="admin-nav-btn" id="admin-tab-orders" data-tab="admin-orders-pane">Orders Received</button>
+              </div>
+
+              <!-- Pane 1: Product List -->
+              <div class="admin-tab-content active" id="admin-products-pane">
+                <div class="admin-item-list" id="admin-products-list">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+              <!-- Pane 2: Order Logs -->
+              <div class="admin-tab-content" id="admin-orders-pane">
+                <div class="orders-list" id="admin-orders-list">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </main>
+
+        <!-- React Bits Dock Navigation Bar (Global) -->
+        <div id="dock-root"></div>
+        <nav class="bottom-nav" style="display: none;">
+          <button class="bottom-nav-item active" data-target="home" aria-label="Go to Home">
+            <i class="material-icons-round">home</i>
+            <span>Home</span>
+          </button>
+          <button class="bottom-nav-item" data-target="shop" aria-label="Go to Shop">
+            <i class="material-icons-round">grid_view</i>
+            <span>Shop</span>
+          </button>
+          <button class="bottom-nav-item" data-target="cart" aria-label="Go to Cart">
+            <div class="bottom-nav-item-cart-wrapper">
+              <i class="material-icons-round">shopping_cart</i>
+              <span class="cart-badge" id="cart-badge-nav" style="display: none;">0</span>
+            </div>
+            <span>Cart</span>
+          </button>
+          <button class="bottom-nav-item" data-target="admin" aria-label="Go to Merchant Admin">
+            <i class="material-icons-round">admin_panel_settings</i>
+            <span>Admin</span>
+          </button>
+        </nav>
+
+        <!-- Product Form Modal (Add / Edit Saree) -->
+        <div class="modal-overlay" id="modal-admin-product">
+          <div class="modal-box">
+            <div class="modal-header">
+              <h3 class="modal-title" id="modal-product-title">Add New Saree</h3>
+              <button class="modal-close" id="modal-product-close" aria-label="Close modal">&times;</button>
+            </div>
+            <form id="admin-product-form">
+              <div class="modal-body">
+                <input type="hidden" id="admin-form-product-id">
+                
+                <div class="form-group">
+                  <label class="form-label" for="admin-prod-name">Saree Name *</label>
+                  <input type="text" class="form-input" id="admin-prod-name" required placeholder="e.g. Classic Crimson Kanchipuram">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="admin-prod-category">Weave Category *</label>
+                  <select class="form-input" id="admin-prod-category" required style="padding: 0 8px;">
+                    <option value="Kanchipuram">Kanchipuram</option>
+                    <option value="Banarasi">Banarasi</option>
+                    <option value="Paithani">Paithani</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="admin-prod-price">Price (₹) *</label>
+                  <input type="number" class="form-input" id="admin-prod-price" required min="1000" placeholder="e.g. 15000">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Product Images 📸</label>
+                  <div style="background: #F5F5F5; border: 2px dashed var(--color-maroon); border-radius: 8px; padding: 20px; text-align: center; cursor: pointer;" id="image-upload-area">
+                    <i class="material-icons-round" style="font-size: 32px; color: var(--color-maroon); display: block; margin-bottom: 10px;">add_photo_alternate</i>
+                    <p style="margin: 0; color: var(--color-text); font-weight: 500;">Click or drag images</p>
+                    <small style="color: var(--color-text-muted);">Multiple images allowed</small>
+                    <input type="file" id="admin-prod-images" multiple accept="image/*" style="display: none;">
+                  </div>
+                  <div id="image-gallery-preview" style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;"></div>
+                  <input type="hidden" id="admin-prod-images-urls" value="">
+                  <small style="color: var(--color-text-muted); font-size: 0.75rem; margin-top: 4px; display: block;">First image is primary. Or paste URLs below:</small>
+                </div>
+                
+                <div class="form-group">
+                  <textarea class="form-textarea" id="admin-prod-image-urls" placeholder="https://example.com/saree1.png&#10;https://example.com/saree2.png" style="height: 60px; font-family: monospace; font-size: 0.85rem;"></textarea>
+                </div>
+                
+                <h4 style="font-family: var(--font-heading); font-size: 0.82rem; color: var(--color-maroon); margin: 15px 0 10px 0; border-bottom: 1px solid var(--color-cream-dark); padding-bottom: 4px;">Technical Specifications</h4>
+                
+                <div class="form-group">
+                  <label class="form-label" for="admin-spec-fabric">Fabric Details</label>
+                  <input type="text" class="form-input" id="admin-spec-fabric" placeholder="e.g. Pure Mulberry Silk (100%)">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="admin-spec-color">Color Combination</label>
+                  <input type="text" class="form-input" id="admin-spec-color" placeholder="e.g. Crimson Red & Gold">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="admin-spec-occasion">Recommended Occasion</label>
+                  <input type="text" class="form-input" id="admin-spec-occasion" placeholder="e.g. Bridal, Festive">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="admin-spec-zari">Zari Details</label>
+                  <input type="text" class="form-input" id="admin-spec-zari" placeholder="e.g. Pure Gold Zari Work">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="admin-spec-blouse">Blouse Details</label>
+                  <input type="text" class="form-input" id="admin-spec-blouse" placeholder="e.g. Running blouse piece included">
+                </div>
+
+                <h4 style="font-family: var(--font-heading); font-size: 0.82rem; color: var(--color-maroon); margin: 15px 0 10px 0; border-bottom: 1px solid var(--color-cream-dark); padding-bottom: 4px;">Description & Stock</h4>
+
+                <div class="form-group">
+                  <label class="form-label" for="admin-prod-desc">Story & Weaving Description *</label>
+                  <div style="display: flex; gap: 8px; align-items: flex-start;">
+                    <textarea class="form-textarea" id="admin-prod-desc" required placeholder="A short traditional storytelling describing the motifs, weaving style and drape."></textarea>
+                    <button type="button" class="btn-primary" id="admin-ai-write-btn" style="padding: 8px 12px; height: fit-content; white-space: nowrap; background: var(--color-gold); color: var(--color-text); border-color: var(--color-gold); font-size: 0.7rem;">
+                      <i class="material-icons-round" style="font-size: 18px; display: block; margin-bottom: 2px;">auto_awesome</i>AI
+                    </button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="admin-prod-stock">Stock Quantity *</label>
+                  <input type="number" class="form-input" id="admin-prod-stock" required min="0" value="5" placeholder="Available units">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn-secondary" id="modal-product-cancel">Cancel</button>
+                <button type="submit" class="btn-primary" id="modal-product-submit">Save Product</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Filter Drawer Modal -->
+        <div class="modal-overlay" id="modal-filter-drawer">
+          <div class="drawer-box">
+            <div class="drawer-header">
+              <h3 class="drawer-title">Filters</h3>
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <button class="drawer-clear-btn" id="drawer-clear-btn">Clear All</button>
+                <button class="drawer-close" id="drawer-close" aria-label="Close filters">&times;</button>
+              </div>
+            </div>
+            <div class="drawer-body">
+              <!-- Category Filter Section (Fabric) -->
+              <div class="drawer-section">
+                <h4 class="drawer-section-title">Fabric Weave</h4>
+                <div class="drawer-tags" id="drawer-filter-fabric">
+                  <button class="drawer-tag active" data-value="All">All Weaves</button>
+                  <button class="drawer-tag" data-value="Kanchipuram">Kanchipuram</button>
+                  <button class="drawer-tag" data-value="Banarasi">Banarasi</button>
+                  <button class="drawer-tag" data-value="Paithani">Paithani</button>
+                </div>
+              </div>
+              
+              <!-- Price Filter Section -->
+              <div class="drawer-section">
+                <h4 class="drawer-section-title">Price Range</h4>
+                <div class="drawer-tags" id="drawer-filter-price">
+                  <button class="drawer-tag active" data-value="all">All Prices</button>
+                  <button class="drawer-tag" data-value="under-10k">Under ₹10,000</button>
+                  <button class="drawer-tag" data-value="10k-15k">₹10,000 - ₹15,000</button>
+                  <button class="drawer-tag" data-value="15k-20k">₹15,000 - ₹20,000</button>
+                  <button class="drawer-tag" data-value="over-20k">Over ₹20,000</button>
+                </div>
+              </div>
+              
+              <!-- Color Filter Section -->
+              <div class="drawer-section">
+                <h4 class="drawer-section-title">Color Family</h4>
+                <div class="drawer-color-grid" id="drawer-filter-color">
+                  <button class="drawer-color-pill active" data-value="all">
+                    <span class="color-dot multi-color"></span>
+                    <span>All Colors</span>
+                  </button>
+                  <button class="drawer-color-pill" data-value="red">
+                    <span class="color-dot" style="background-color: #C62828;"></span>
+                    <span>Red</span>
+                  </button>
+                  <button class="drawer-color-pill" data-value="blue">
+                    <span class="color-dot" style="background-color: #1565C0;"></span>
+                    <span>Blue</span>
+                  </button>
+                  <button class="drawer-color-pill" data-value="cream">
+                    <span class="color-dot" style="background-color: #FFF8E1; border: 1px solid var(--color-cream-dark);"></span>
+                    <span>Cream</span>
+                  </button>
+                  <button class="drawer-color-pill" data-value="green">
+                    <span class="color-dot" style="background-color: #2E7D32;"></span>
+                    <span>Green</span>
+                  </button>
+                  <button class="drawer-color-pill" data-value="gold">
+                    <span class="color-dot" style="background-color: #D4AF37;"></span>
+                    <span>Gold</span>
+                  </button>
+                  <button class="drawer-color-pill" data-value="pink">
+                    <span class="color-dot" style="background-color: #EC407A;"></span>
+                    <span>Pink</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="drawer-footer">
+              <button class="btn-primary" id="drawer-apply-btn" style="width: 100%;">
+                Apply Filters
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toast Notifications Area -->
+        <div id="toast-container"></div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DB Seed & App Logics -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="products.js"></script>
+  <script src="AIDescriptionGenerator.js"></script>
+  <script src="AnimatedContent.js"></script>
+  <script src="app.js"></script>
+  <script src="GlareHover.js"></script>
+  <script type="module" src="dock-app.js"></script>
+</body>
+</html>
