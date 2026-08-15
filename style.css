@@ -49,16 +49,25 @@ body {
 .desktop-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
   width: 100%;
   padding: 0;
   background-color: var(--color-cream-dark);
+  flex-direction: column;
+  gap: 0;
 }
 
 /* Branding panel on desktop */
 .desktop-sidebar {
-  display: none !important;
+  display: none;
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 30px;
+  background: linear-gradient(135deg, #6B1C23 0%, #4A1220 100%);
+  color: var(--color-cream-dark);
+  overflow-y: auto;
+  max-height: 50vh;
 }
 
 .desktop-sidebar h1 {
@@ -110,7 +119,7 @@ body {
 /* Mobile-only View Lock: centered 480px column on desktop, full screen on mobile */
 .phone-frame {
   width: 100%;
-  max-width: 480px;
+  max-width: 100%;
   height: 100vh;
   background-color: var(--color-cream);
   overflow-y: auto;
@@ -120,7 +129,8 @@ body {
   flex-direction: column;
   border-radius: 0;
   border: none;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+  flex: 1;
 }
 
 /* Speaker & Camera notch (Disabled) */
@@ -283,6 +293,7 @@ body {
 .products-grid {
   gap: 10px !important;
   padding: 10px !important;
+  grid-template-columns: repeat(2, 1fr) !important;
 }
 .saree-card-info {
   padding: 8px !important;
@@ -324,6 +335,222 @@ body {
   right: 8px !important;
   font-size: 0.6rem !important;
   padding: 2px 6px !important;
+}
+
+/* RESPONSIVE DESIGN - Media Queries */
+
+/* Tablet View (768px and above) */
+@media (min-width: 768px) {
+  .desktop-wrapper {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .desktop-sidebar {
+    display: block !important;
+    width: 300px;
+    min-width: 300px;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, #6B1C23 0%, #4A1220 100%);
+    border-right: 2px solid var(--color-gold);
+  }
+
+  .desktop-sidebar h1 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+
+  .desktop-sidebar p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .desktop-sidebar .tagline {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+
+  .desktop-sidebar .features-list li {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+
+  .phone-frame {
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    border-radius: 0;
+    flex: 1;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+    padding: 15px !important;
+  }
+
+  .saree-card-img {
+    height: 200px;
+  }
+}
+
+/* Desktop View (1024px and above) */
+@media (min-width: 1024px) {
+  .desktop-wrapper {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .desktop-sidebar {
+    display: block !important;
+    width: 350px;
+    min-width: 350px;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 50px 40px;
+    background: linear-gradient(135deg, #6B1C23 0%, #4A1220 100%);
+    border-right: 3px solid var(--color-gold);
+  }
+
+  .desktop-sidebar h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+  }
+
+  .desktop-sidebar p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+
+  .desktop-sidebar .tagline {
+    font-size: 1.15rem;
+    margin-bottom: 35px;
+  }
+
+  .desktop-sidebar .features-list li {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+
+  .phone-frame {
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    border-radius: 0;
+    flex: 1;
+    background-color: var(--color-cream-dark);
+  }
+
+  .phone-screen {
+    background-color: var(--color-cream);
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 15px !important;
+    padding: 20px !important;
+  }
+
+  .saree-card-img {
+    height: 220px;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .hero-slider {
+    height: 280px;
+  }
+}
+
+/* Large Desktop (1440px and above) */
+@media (min-width: 1440px) {
+  .desktop-sidebar {
+    width: 400px;
+    min-width: 400px;
+    padding: 60px 50px;
+  }
+
+  .desktop-sidebar h1 {
+    font-size: 3rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 18px !important;
+    padding: 25px !important;
+  }
+
+  .saree-card-img {
+    height: 250px;
+  }
+}
+
+/* Extra Large Desktop (1920px and above) */
+@media (min-width: 1920px) {
+  .desktop-sidebar {
+    width: 450px;
+    min-width: 450px;
+  }
+
+  .phone-frame {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(6, 1fr) !important;
+  }
+}
+
+/* Mobile-only fixes for small screens */
+@media (max-width: 767px) {
+  .desktop-sidebar {
+    display: none !important;
+  }
+
+  .desktop-wrapper {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .phone-frame {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+}
+
+/* Scrollbar styling for sidebar */
+.desktop-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.desktop-sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.desktop-sidebar::-webkit-scrollbar-thumb {
+  background: var(--color-gold-light);
+  border-radius: 3px;
+}
+
+.desktop-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
 }
 
 /* App Header styling */
