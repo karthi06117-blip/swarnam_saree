@@ -12,6 +12,11 @@ let sortOrder = "default";
 let selectedProductQty = 1;
 let previousView = "home";
 
+const ADMIN_EMAIL = "karthi06117@gmail.com";
+const ADMIN_PASSWORD = "@KARTHI0607";
+const AUTH_STORAGE_KEY = "svarnam_auth_user";
+const USERS_STORAGE_KEY = "svarnam_users";
+
 // Dom Elements
 const views = {
   home: document.getElementById("view-home"),
@@ -30,25 +35,26 @@ const contentScrollContainer = document.getElementById("app-content-scroll");
 
 // Initialize Application
 document.addEventListener("DOMContentLoaded", () => {
-  // Load State from LocalStorage
+  setupAuthUI();
+  setupUserMenu();
+
+  if (isUserLoggedIn() || isAdminLoggedIn()) {
+    showAppShell();
+  } else {
+    showLoginScreen();
+  }
+
   loadCart();
   loadOrders();
   
-  // Setup SPA Navigation
   initNavigation();
-  
-  // Setup Page-Specific Event Listeners
   initHomeView();
   initShopView();
   initDetailView();
   initCartView();
   initCheckoutView();
   initAdminView();
-  
-  // Initial Render of Badge count
   updateCartBadges();
-  
-  // Render home page featured sarees
   renderFeaturedProducts();
 });
 
@@ -193,7 +199,6 @@ function navigateTo(viewId, params = {}) {
 }
 
 function initNavigation() {
-  // Bottom Nav items
   navItems.forEach(item => {
     item.addEventListener("click", () => {
       const target = item.getAttribute("data-target");
@@ -205,10 +210,166 @@ function initNavigation() {
     });
   });
   
-  // Header Cart Button
   document.getElementById("header-cart-btn").addEventListener("click", () => {
     navigateTo("cart");
   });
+}
+
+function setupAuthUI() {
+  const loginForm = document.getElementById("auth-login-form");
+  const signupForm = document.getElementById("auth-signup-form");
+  const loginToggle = document.getElementById("auth-toggle-login");
+  const signupToggle = document.getElementById("auth-toggle-signup");
+  const authError = document.getElementById("auth-error-msg");
+  const signupError = document.getElementById("signup-error-msg");
+
+  if (!loginForm || !signupForm || !loginToggle || !signupToggle) return;
+
+  loginToggle.addEventListener("click", () => {
+    loginForm.classList.add("active");
+    signupForm.classList.remove("active");
+    loginToggle.classList.add("active");
+    signupToggle.classList.remove("active");
+    authError.style.display = "none";
+    signupError.style.display = "none";
+  });
+
+  signupToggle.addEventListener("click", () => {
+    signupForm.classList.add("active");
+    loginForm.classList.remove("active");
+    signupToggle.classList.add("active");
+    loginToggle.classList.remove("active");
+    authError.style.display = "none";
+    signupError.style.display = "none";
+  });
+
+  loginForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const email = document.getElementById("auth-email").value.trim().toLowerCase();
+    const password = document.getElementById("auth-password").value;
+
+    if (email === ADMIN_EMAIL.toLowerCase() && password === ADMIN_PASSWORD) {
+      localStorage.setItem("svarnam_admin_logged_in", "true");
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+      window.location.href = "admin.html";
+      return;
+    }
+
+    const users = getUsers();
+    const match = users.find(user => user.email.toLowerCase() === email && user.password === password);
+
+    if (match) {
+      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ email: match.email, name: match.name }));
+      localStorage.removeItem("svarnam_admin_logged_in");
+      authError.style.display = "none";
+      showAppShell();
+      return;
+    }
+
+    authError.style.display = "block";
+  });
+
+  signupForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const name = document.getElementById("signup-name").value.trim();
+    const email = document.getElementById("signup-email").value.trim().toLowerCase();
+    const phone = document.getElementById("signup-phone").value.trim();
+    const password = document.getElementById("signup-password").value;
+
+    if (!name || !email || !phone || !password) {
+      signupError.textContent = "Please complete all fields.";
+      signupError.style.display = "block";
+      return;
+    }
+
+    const users = getUsers();
+    const exists = users.some(user => user.email.toLowerCase() === email);
+    if (exists) {
+      signupError.textContent = "This email is already registered.";
+      signupError.style.display = "block";
+      return;
+    }
+
+    users.push({ name, email, phone, password });
+    localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
+    signupError.style.display = "none";
+    signupForm.reset();
+    loginToggle.click();
+    showToast("Account created successfully. Please log in.");
+  });
+}
+
+function setupUserMenu() {
+  const menuButton = document.getElementById("header-menu-btn");
+  const menuPanel = document.getElementById("user-menu-panel");
+  const logoutButton = document.getElementById("user-menu-logout");
+
+  if (!menuButton || !menuPanel || !logoutButton) return;
+
+  menuButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const isOpen = menuPanel.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+    menuPanel.setAttribute("aria-hidden", String(!isOpen));
+  });
+
+  logoutButton.addEventListener("click", () => {
+    logoutCurrentUser();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!menuPanel.contains(event.target) && !menuButton.contains(event.target)) {
+      menuPanel.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuPanel.setAttribute("aria-hidden", "true");
+    }
+  });
+}
+
+function logoutCurrentUser() {
+  localStorage.removeItem(AUTH_STORAGE_KEY);
+  localStorage.removeItem("svarnam_admin_logged_in");
+  const menuPanel = document.getElementById("user-menu-panel");
+  const menuButton = document.getElementById("header-menu-btn");
+
+  if (menuPanel) {
+    menuPanel.classList.remove("open");
+    menuPanel.setAttribute("aria-hidden", "true");
+  }
+
+  if (menuButton) {
+    menuButton.setAttribute("aria-expanded", "false");
+  }
+
+  showLoginScreen();
+}
+
+function getUsers() {
+  const existing = localStorage.getItem(USERS_STORAGE_KEY);
+  return existing ? JSON.parse(existing) : [];
+}
+
+function isUserLoggedIn() {
+  return Boolean(localStorage.getItem(AUTH_STORAGE_KEY));
+}
+
+function isAdminLoggedIn() {
+  return localStorage.getItem("svarnam_admin_logged_in") === "true";
+}
+
+function showLoginScreen() {
+  const loginScreen = document.getElementById("login-screen");
+  const appShell = document.getElementById("app-shell");
+  if (loginScreen) loginScreen.style.display = "flex";
+  if (appShell) appShell.style.display = "none";
+}
+
+function showAppShell() {
+  const loginScreen = document.getElementById("login-screen");
+  const appShell = document.getElementById("app-shell");
+  if (loginScreen) loginScreen.style.display = "none";
+  if (appShell) appShell.style.display = "block";
+  navigateTo("home");
 }
 
 /* ==========================================================================

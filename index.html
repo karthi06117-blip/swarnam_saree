@@ -52,20 +52,81 @@
     <!-- Center/Right: Phone Simulator Frame -->
     <div class="phone-frame">
       <div class="phone-screen" id="phone-screen">
-        
-        <!-- App Header (Global) -->
-        <header class="app-header">
-          <div class="logo-container">
-            <span class="logo">SVARNAM SILKS</span>
-          </div>
-          <button class="header-action-btn" id="header-cart-btn" aria-label="View Cart">
-            <i class="material-icons-round">shopping_cart</i>
-            <span class="cart-badge" id="cart-badge-count" style="display: none;">0</span>
-          </button>
-        </header>
+        <div class="auth-screen" id="login-screen">
+          <div class="auth-card">
+            <div class="auth-brand">
+              <span class="auth-brand-mark">SVARNAM</span>
+              <h1>Silks</h1>
+            </div>
+            <p class="auth-subtitle">Your heritage bridal wardrobe starts here.</p>
 
-        <!-- App Main Content Area -->
-        <main class="app-content" id="app-content-scroll">
+            <form id="auth-login-form" class="auth-form active">
+              <div class="auth-field-group">
+                <label for="auth-email">Email</label>
+                <input type="email" id="auth-email" placeholder="you@example.com" required autocomplete="email">
+              </div>
+              <div class="auth-field-group">
+                <label for="auth-password">Password</label>
+                <input type="password" id="auth-password" placeholder="Enter your password" required autocomplete="current-password">
+              </div>
+              <div class="auth-error" id="auth-error-msg" style="display: none;">Invalid email or password.</div>
+              <button type="submit" class="auth-submit-btn">Login</button>
+            </form>
+
+            <form id="auth-signup-form" class="auth-form">
+              <div class="auth-field-group">
+                <label for="signup-name">Name</label>
+                <input type="text" id="signup-name" placeholder="Your full name" required>
+              </div>
+              <div class="auth-field-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" placeholder="you@example.com" required>
+              </div>
+              <div class="auth-field-group">
+                <label for="signup-phone">Phone Number</label>
+                <input type="tel" id="signup-phone" placeholder="9876543210" required>
+              </div>
+              <div class="auth-field-group">
+                <label for="signup-password">New Password</label>
+                <input type="password" id="signup-password" placeholder="Create a password" required>
+              </div>
+              <div class="auth-error" id="signup-error-msg" style="display: none;">Please complete all fields.</div>
+              <button type="submit" class="auth-submit-btn">Create Account</button>
+            </form>
+
+            <div class="auth-toggle-row">
+              <button type="button" class="auth-toggle-btn active" id="auth-toggle-login">Login</button>
+              <button type="button" class="auth-toggle-btn" id="auth-toggle-signup">Create New Account</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="app-shell" style="display: none;">
+          <!-- App Header (Global) -->
+          <header class="app-header">
+            <div class="logo-container">
+              <span class="logo">SVARNAM SILKS</span>
+            </div>
+            <div class="header-actions">
+              <button class="header-menu-btn" id="header-menu-btn" aria-label="Open menu" aria-expanded="false">
+                <i class="material-icons-round">menu</i>
+              </button>
+              <button class="header-action-btn" id="header-cart-btn" aria-label="View Cart">
+                <i class="material-icons-round">shopping_cart</i>
+                <span class="cart-badge" id="cart-badge-count" style="display: none;">0</span>
+              </button>
+            </div>
+          </header>
+
+          <div class="user-menu-panel" id="user-menu-panel" aria-hidden="true">
+            <button class="menu-option" id="user-menu-logout" type="button">
+              <i class="material-icons-round">logout</i>
+              <span>Logout</span>
+            </button>
+          </div>
+
+          <!-- App Main Content Area -->
+          <main class="app-content" id="app-content-scroll">
           
           <!-- 1. HOME VIEW -->
           <div id="view-home" class="page-view active">
@@ -468,11 +529,8 @@
             </div>
             <span>Cart</span>
           </button>
-          <button class="bottom-nav-item" data-target="admin" aria-label="Go to Merchant Admin">
-            <i class="material-icons-round">admin_panel_settings</i>
-            <span>Admin</span>
-          </button>
         </nav>
+        </div>
 
         <!-- Product Form Modal (Add / Edit Saree) -->
         <div class="modal-overlay" id="modal-admin-product">

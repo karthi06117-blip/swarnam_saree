@@ -206,15 +206,6 @@ function AppDock() {
         setActiveNav('cart');
         if (window.navigateTo) window.navigateTo('cart');
       }
-    },
-    {
-      icon: React.createElement('i', { className: 'material-icons-round' }, 'admin_panel_settings'),
-      label: 'Admin',
-      isActive: activeNav === 'admin',
-      onClick: () => {
-        setActiveNav('admin');
-        if (window.navigateTo) window.navigateTo('admin');
-      }
     }
   ];
 

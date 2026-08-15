@@ -81,11 +81,12 @@ function showDashboard() {
 
 function handleLogin(e) {
   e.preventDefault();
-  const username = document.getElementById("login-username").value.trim();
+  const email = document.getElementById("login-username").value.trim().toLowerCase();
   const password = document.getElementById("login-password").value;
 
-  if (username === "admin" && password === "admin123") {
+  if (email === "karthi06117@gmail.com" && password === "@KARTHI0607") {
     localStorage.setItem("svarnam_admin_logged_in", "true");
+    localStorage.removeItem("svarnam_auth_user");
     loginErrorMsg.style.display = "none";
     loginForm.reset();
     showDashboard();
@@ -97,8 +98,8 @@ function handleLogin(e) {
 
 function handleLogout() {
   localStorage.removeItem("svarnam_admin_logged_in");
-  showLogin();
-  showToast("Logged out successfully");
+  localStorage.removeItem("svarnam_auth_user");
+  window.location.href = "index.html";
 }
 
 // Event Listeners setup
