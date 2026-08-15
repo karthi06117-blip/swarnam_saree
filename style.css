@@ -396,6 +396,15 @@ body {
   .saree-card-img {
     height: 200px;
   }
+
+  .home-search-bar {
+    height: 52px;
+    padding: 0 18px;
+  }
+
+  .home-search-bar input {
+    font-size: 1rem;
+  }
 }
 
 /* Desktop View (1024px and above) */
@@ -467,6 +476,19 @@ body {
 
   .hero-slider {
     height: 280px;
+  }
+
+  .home-search-bar {
+    height: 54px;
+    padding: 0 20px;
+  }
+
+  .home-search-bar i {
+    font-size: 24px;
+  }
+
+  .home-search-bar input {
+    font-size: 1.05rem;
   }
 }
 
@@ -551,6 +573,57 @@ body {
 
 .desktop-sidebar::-webkit-scrollbar-thumb:hover {
   background: var(--color-gold);
+}
+
+/* Hide sidebar when app is active (after login) */
+#app-shell:not([style*="display: none"]) ~ .desktop-sidebar,
+.phone-frame ~ .desktop-sidebar {
+  display: none !important;
+}
+
+/* Home Search Bar Styling */
+.home-search-container {
+  padding: 15px 20px;
+  background-color: var(--color-cream-dark);
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.home-search-bar {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  background-color: var(--color-white);
+  border: 2px solid #ddd;
+  border-radius: 24px;
+  padding: 0 16px;
+  gap: 10px;
+  transition: var(--transition);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.home-search-bar:focus-within {
+  border-color: var(--color-maroon);
+  box-shadow: 0 4px 12px rgba(201, 42, 42, 0.1);
+}
+
+.home-search-bar i {
+  color: var(--color-text-muted);
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.home-search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  outline: none;
+}
+
+.home-search-bar input::placeholder {
+  color: var(--color-text-muted);
 }
 
 /* App Header styling */
