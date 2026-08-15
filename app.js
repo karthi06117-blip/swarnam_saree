@@ -489,6 +489,22 @@ function initShopView() {
     renderShopProducts();
   });
   
+  // Home Search input - navigate to shop with search query
+  const homeSearchInput = document.getElementById("home-search-input");
+  if (homeSearchInput) {
+    homeSearchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+    });
+    
+    homeSearchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        searchQuery = e.target.value.toLowerCase().trim();
+        showView("view-shop");
+        renderShopProducts();
+      }
+    });
+  }
+  
   // Search input
   document.getElementById("shop-search-input").addEventListener("input", (e) => {
     searchQuery = e.target.value.toLowerCase().trim();
