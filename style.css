@@ -113,7 +113,8 @@ body {
   max-width: 480px;
   height: 100vh;
   background-color: var(--color-cream);
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -133,7 +134,8 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--color-cream);
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   border-radius: 0;
 }
