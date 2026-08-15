@@ -103,7 +103,7 @@
 
         <div id="app-shell" style="display: none;">
           <!-- App Header (Global) -->
-          <header class="app-header">
+          <header class="app-header" style="display: none;">
             <div class="logo-container">
               <span class="logo">SVARNAM SILKS</span>
             </div>
@@ -141,9 +141,16 @@
 
             <!-- Home Search Bar -->
             <div class="home-search-container">
-              <div class="home-search-bar">
-                <i class="material-icons-round">search</i>
-                <input type="text" id="home-search-input" placeholder="Search for Products, Brands and More" aria-label="Search products">
+              <div class="home-search-wrapper">
+                <div class="home-search-bar">
+                  <i class="material-icons-round">search</i>
+                  <input type="text" id="home-search-input" placeholder="Search for Silk Sarees" aria-label="Search silk sarees">
+                </div>
+                <div class="search-suggestions-dropdown" id="search-suggestions-dropdown" style="display: none;">
+                  <ul class="suggestions-list" id="suggestions-list">
+                    <!-- Populated by JavaScript -->
+                  </ul>
+                </div>
               </div>
             </div>
 

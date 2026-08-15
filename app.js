@@ -489,20 +489,89 @@ function initShopView() {
     renderShopProducts();
   });
   
-  // Home Search input - navigate to shop with search query
+  // Home Search input with suggestions dropdown
   const homeSearchInput = document.getElementById("home-search-input");
+  const searchSuggestionsDropdown = document.getElementById("search-suggestions-dropdown");
+  const suggestionsList = document.getElementById("suggestions-list");
+  
   if (homeSearchInput) {
     homeSearchInput.addEventListener("input", (e) => {
-      searchQuery = e.target.value.toLowerCase().trim();
+      const query = e.target.value.toLowerCase().trim();
+      searchQuery = query;
+      
+      if (query.length > 0) {
+        // Filter products based on search query
+        const filtered = INITIAL_PRODUCTS.filter(product => {
+          return product.name.toLowerCase().includes(query) ||
+                 product.category.toLowerCase().includes(query) ||
+                 product.description.toLowerCase().includes(query);
+        });
+        
+        // Show suggestions
+        if (filtered.length > 0) {
+          showSearchSuggestions(filtered.slice(0, 8)); // Show max 8 suggestions
+        } else {
+          showNoResults();
+        }
+        searchSuggestionsDropdown.classList.add("show");
+      } else {
+        searchSuggestionsDropdown.classList.remove("show");
+        suggestionsList.innerHTML = "";
+      }
     });
     
     homeSearchInput.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
         searchQuery = e.target.value.toLowerCase().trim();
+        searchSuggestionsDropdown.classList.remove("show");
         showView("view-shop");
         renderShopProducts();
       }
     });
+    
+    // Close suggestions when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".home-search-wrapper")) {
+        searchSuggestionsDropdown.classList.remove("show");
+      }
+    });
+  }
+  
+  // Function to show search suggestions
+  function showSearchSuggestions(products) {
+    suggestionsList.innerHTML = products.map(product => `
+      <li class="suggestion-item" data-product-id="${product.id}">
+        <div class="suggestion-item-img">
+          <img src="${product.image}" alt="${product.name}" onerror="this.src='images/placeholder.png'">
+        </div>
+        <div class="suggestion-item-content">
+          <div class="suggestion-item-name">${product.name}</div>
+          <div class="suggestion-item-category">${product.category}</div>
+        </div>
+      </li>
+    `).join("");
+    
+    // Add click handlers to suggestions
+    document.querySelectorAll(".suggestion-item").forEach(item => {
+      item.addEventListener("click", () => {
+        const productName = item.querySelector(".suggestion-item-name").textContent;
+        homeSearchInput.value = productName;
+        searchQuery = productName.toLowerCase();
+        searchSuggestionsDropdown.classList.remove("show");
+        showView("view-shop");
+        renderShopProducts();
+      });
+    });
+  }
+  
+  // Function to show no results message
+  function showNoResults() {
+    suggestionsList.innerHTML = `
+      <div class="no-results-message">
+        <i class="material-icons-round" style="font-size: 48px; color: var(--color-text-muted); margin-bottom: 8px; display: block;">search_off</i>
+        No results found
+      </div>
+    `;
   }
   
   // Search input
