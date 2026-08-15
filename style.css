@@ -58,16 +58,13 @@ body {
   gap: 0;
 }
 
-/* Branding panel on desktop */
+/* Branding panel on desktop - HIDDEN */
 .desktop-sidebar {
-  display: none;
-  flex: 0 0 auto;
-  width: 100%;
-  padding: 30px;
-  background: linear-gradient(135deg, #6B1C23 0%, #4A1220 100%);
-  color: var(--color-cream-dark);
-  overflow-y: auto;
-  max-height: 50vh;
+  display: none !important;
+  width: 0;
+  min-width: 0;
+  visibility: hidden;
+  overflow: hidden;
 }
 
 .desktop-sidebar h1 {
@@ -342,41 +339,18 @@ body {
 /* Tablet View (768px and above) */
 @media (min-width: 768px) {
   .desktop-wrapper {
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: stretch;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 0;
   }
 
   .desktop-sidebar {
-    display: block !important;
-    width: 300px;
-    min-width: 300px;
-    max-height: 100vh;
-    overflow-y: auto;
-    padding: 40px 30px;
-    background: linear-gradient(135deg, #6B1C23 0%, #4A1220 100%);
-    border-right: 2px solid var(--color-gold);
-  }
-
-  .desktop-sidebar h1 {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-  }
-
-  .desktop-sidebar p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-
-  .desktop-sidebar .tagline {
-    font-size: 1rem;
-    margin-bottom: 25px;
-  }
-
-  .desktop-sidebar .features-list li {
-    font-size: 0.85rem;
-    margin-bottom: 12px;
+    display: none !important;
+    width: 0;
+    min-width: 0;
+    visibility: hidden;
+    overflow: hidden;
   }
 
   .phone-frame {
@@ -423,41 +397,17 @@ body {
 /* Desktop View (1024px and above) */
 @media (min-width: 1024px) {
   .desktop-wrapper {
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: stretch;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .desktop-sidebar {
-    display: block !important;
-    width: 350px;
-    min-width: 350px;
-    max-height: 100vh;
-    overflow-y: auto;
-    padding: 50px 40px;
-    background: linear-gradient(135deg, #6B1C23 0%, #4A1220 100%);
-    border-right: 3px solid var(--color-gold);
-  }
-
-  .desktop-sidebar h1 {
-    font-size: 2.8rem;
-    margin-bottom: 20px;
-  }
-
-  .desktop-sidebar p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 25px;
-  }
-
-  .desktop-sidebar .tagline {
-    font-size: 1.15rem;
-    margin-bottom: 35px;
-  }
-
-  .desktop-sidebar .features-list li {
-    font-size: 0.9rem;
-    margin-bottom: 15px;
+    display: none !important;
+    width: 0;
+    min-width: 0;
+    visibility: hidden;
+    overflow: hidden;
   }
 
   .phone-frame {
@@ -466,7 +416,7 @@ body {
     height: 100vh;
     border-radius: 0;
     flex: 1;
-    background-color: var(--color-cream-dark);
+    background-color: var(--color-cream);
   }
 
   .phone-screen {
@@ -548,24 +498,24 @@ body {
 /* Extra Large Desktop (1920px and above) */
 @media (min-width: 1920px) {
   .desktop-sidebar {
-    width: 450px;
-    min-width: 450px;
+    display: none !important;
+    width: 0;
+    min-width: 0;
+    visibility: hidden;
+    overflow: hidden;
   }
 
   .phone-frame {
-    max-width: 1000px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none
+
+  .phone-frame {
+    width: 100%;
+    max-width: none;
   }
 
   .products-grid {
-    grid-template-columns: repeat(6, 1fr) !important;
-  }
-}
-
-/* Mobile-only fixes for small screens */
-@media (max-width: 767px) {
-  .desktop-sidebar {
-    display: none !important;
+    grid-template-columns: repeat(5, 1fr) !important !important;
   }
 
   .desktop-wrapper {
@@ -887,7 +837,7 @@ body {
 .app-content {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 75px; /* for sticky nav space */
+  padding-bottom: 0;
   position: relative;
   scrollbar-width: thin;
   scrollbar-color: var(--color-maroon-light) transparent;
@@ -902,21 +852,19 @@ body {
   border-radius: 10px;
 }
 
-/* Bottom Navigation Bar */
+/* Bottom Navigation Bar - COMPLETELY HIDDEN */
 .bottom-nav {
+  display: none !important;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 68px;
-  background-color: var(--color-white);
-  border-top: 1px solid var(--color-cream-dark);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.04);
-  z-index: 100;
-  padding-bottom: env(safe-area-inset-bottom);
+  height: 0;
+  background-color: transparent;
+  border-top: none;
+  z-index: 0;
+  padding-bottom: 0;
+  visibility: hidden;
 }
 
 .bottom-nav-item {
